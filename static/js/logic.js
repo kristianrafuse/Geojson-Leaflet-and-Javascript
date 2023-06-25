@@ -621,3 +621,4 @@ function createLegend() {
   // Add the legend control to the map
   legend.addTo(map);
 }
+
