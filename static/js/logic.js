@@ -526,7 +526,8 @@ var baseLayers = {
 
 // Create an overlay layer control with the markers layer group
 var overlayLayers = {
-  "Markers": markers
+  "Earthquakes": markers,
+  "Plates": plateBoundaryLayer
 };
 
 // Add the base layer control and overlay layer control to the map
