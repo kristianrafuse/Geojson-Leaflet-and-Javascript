@@ -619,7 +619,7 @@ function createLegend() {
     var labels = ['<10 km', '10-20 km', '20-30 km', '30-40 km', '40-50 km', '50-60 km', '60-70 km', '70-80 km', '>80 km'];
 
     // Add a title to the legend
-    div.innerHTML += '<strong>Earthquake Depth</strong><br>';
+    div.innerHTML += '<strong>Earthquake Depth</strong><br><br>';
 
     // Iterate over the depth ranges and labels to create the legend rows
     for (var i = 0; i < depths.length; i++) {
@@ -636,3 +636,30 @@ function createLegend() {
   // Add the legend control to the map
   legend.addTo(map);
 }
+
+// Function to create a SECOND LEGEND WHOA! with text for the map to add some user directions
+function createTextLegend() {
+  // Create a control element for the legend and position it at the bottom left corner of the map
+  var textLegend = L.control({ position: 'bottomleft' });
+
+  // Define the behavior of the text legend control
+  textLegend.onAdd = function() {
+    // Create a div element with the 'legend' class
+    var div = L.DomUtil.create('div', 'legend');
+    // Add a title to the text legend
+    div.innerHTML += '<strong>Directions for this pretty awesome INTERACTIVE EARTHQUAKE MAP</strong><br>';
+    // Add text items to the text legend
+    div.innerHTML += '<p>Toggle your choice of BaseMap in the upper right corner of the page!</p>';
+    div.innerHTML += '<p>Select "Earthquakes" to see all earthquakes detected in the last 30 days.</p>';
+    div.innerHTML += '<p>Click on each circle to see additional details for each earthshaker!</p>';
+    div.innerHTML += '<p>Toggle "Tectonic Plates" to see the relationship between plate boundaries and earthquakahhhhhs!</p>';
+
+    return div;
+  };
+
+  // Add the text legend control to the map
+  textLegend.addTo(map);
+}
+
+// Call the createTextLegend function to create the second legend
+createTextLegend();
