@@ -1,5 +1,4 @@
 // loading plate locations directly into my JS
-
 var platelocations = {
   "type": "FeatureCollection",
   "features": [
@@ -488,11 +487,11 @@ var platelocations = {
   ]
   }
   
-// Create a Leaflet map with specified min and max zoom levels, and set the initial view to a specific latitude and longitude with a zoom level of 4. Centered around the US.
+// Create a Leaflet map with specified min and max zoom levels, and set the initial view to a specific latitude and longitude with a zoom level of 3
 var map = L.map('map', {
   minZoom: 1,
   maxZoom: 10
-}).setView([35.75, -90.89], 4);
+}).setView([0, 0], 3);
 
 // Create a tile layer using OpenStreetMap as the source, with attribution information and a maximum zoom level of 18
 var openStreetMapLayer = L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
@@ -516,12 +515,13 @@ openStreetMapLayer.addTo(map);
 // Create a separate layer group for the markers
 var markers = L.layerGroup();
 
+// Create tectonic plate locations by loading in geoJSON from platelocations
 var plateBoundaryLayer = L.geoJSON(platelocations, {
   style: {
     color: 'orange',
-    weight: 2
+    weight: 1
   }
-}).addTo(map);
+})
 
 // Create a base layer control with two options: OpenStreetMap and Esri World Imagery
 var baseLayers = {
@@ -636,4 +636,3 @@ function createLegend() {
   // Add the legend control to the map
   legend.addTo(map);
 }
-
