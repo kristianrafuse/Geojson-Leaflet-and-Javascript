@@ -1,4 +1,4 @@
-// Create a Leaflet map with specified min and max zoom levels, and set the initial view to a specific latitude and longitude with a zoom level of 4
+// Create a Leaflet map with specified min and max zoom levels, and set the initial view to a specific latitude and longitude with a zoom level of 4. Centered around the US. 
 var map = L.map('map', {
   minZoom: 1,
   maxZoom: 10
@@ -27,7 +27,7 @@ var baseLayers = {
 // Add the base layer control to the map
 L.control.layers(baseLayers).addTo(map);
 
-// Make an AJAX request to retrieve earthquake data from a GeoJSON source
+// Make an AJAX request to retrieve earthquake data from a GeoJSON source -- a few of us used ajax in our projects, so I'm continuing to try it out.
 $.ajax({
   url: 'https://earthquake.usgs.gov/earthquakes/feed/v1.0/summary/all_month.geojson',
   method: 'GET',
@@ -50,7 +50,7 @@ function plotEarthquakes(data) {
     var magnitude = feature.properties.mag;
     var depth = feature.geometry.coordinates[2];
 
-    // Create a circle marker at the earthquake location with a radius based on magnitude and a fill color based on depth
+    // Create a circle marker at the earthquake location with a radius based on magnitude and a fill color based on depth per the assignment requirements.
     var marker = L.circleMarker([lat, lon], {
       radius: magnitude * 3,
       fillColor: getColor(depth),
@@ -59,8 +59,8 @@ function plotEarthquakes(data) {
       opacity: 1,
       fillOpacity: 0.6
     }).addTo(map);
-
-    // Bind a popup to the marker displaying information about the earthquake
+ 
+    // Bind a popup to the marker displaying information about the earthquake added some html to make it more readable. 
     marker.bindPopup(
       '<strong>Location:</strong> ' + feature.properties.place + '<br>' +
       '<strong>Magnitude:</strong> ' + magnitude + '<br>' +
@@ -69,7 +69,7 @@ function plotEarthquakes(data) {
   });
 }
 
-// Function to determine the fill color based on the depth of an earthquake
+// Function to determine the fill color based on the depth of an earthquake I got ChatGPT to give me a list of greens.
 function getColor(depth) {
   // Assign a specific color based on the depth range of the earthquake
   if (depth < 10) {
