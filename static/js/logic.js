@@ -488,7 +488,7 @@ var platelocations = {
   ]
   }
   
-// Create a Leaflet map with specified min and max zoom levels, and set the initial view to a specific latitude and longitude with a zoom level of 4. Centered around the US. 
+// Create a Leaflet map with specified min and max zoom levels, and set the initial view to a specific latitude and longitude with a zoom level of 4. Centered around the US.
 var map = L.map('map', {
   minZoom: 1,
   maxZoom: 10
@@ -508,6 +508,9 @@ var esriWorldImageryLayer = L.tileLayer('https://server.arcgisonline.com/ArcGIS/
 // Add the OpenStreetMap layer to the map as the default layer
 openStreetMapLayer.addTo(map);
 
+// Create a separate layer group for the markers
+var markers = L.layerGroup();
+
 var plateBoundaryLayer = L.geoJSON(platelocations, {
   style: {
     color: 'orange',
@@ -521,8 +524,13 @@ var baseLayers = {
   "Esri World Imagery": esriWorldImageryLayer
 };
 
-// Add the base layer control to the map
-L.control.layers(baseLayers).addTo(map);
+// Create an overlay layer control with the markers layer group
+var overlayLayers = {
+  "Markers": markers
+};
+
+// Add the base layer control and overlay layer control to the map
+L.control.layers(baseLayers, overlayLayers).addTo(map);
 
 // Make an AJAX request to retrieve earthquake data from a GeoJSON source -- a few of us used ajax in our projects, so I'm continuing to try it out.
 $.ajax({
@@ -555,9 +563,9 @@ function plotEarthquakes(data) {
       weight: 0.5,
       opacity: 1,
       fillOpacity: 0.6
-    }).addTo(map);
- 
-    // Bind a popup to the marker displaying information about the earthquake added some html to make it more readable. 
+    }).addTo(markers);
+
+    // Bind a popup to the marker displaying information about the earthquake added some html to make it more readable.
     marker.bindPopup(
       '<strong>Location:</strong> ' + feature.properties.place + '<br>' +
       '<strong>Magnitude:</strong> ' + magnitude + '<br>' +
