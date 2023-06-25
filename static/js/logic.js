@@ -510,7 +510,7 @@ openStreetMapLayer.addTo(map);
 
 var plateBoundaryLayer = L.geoJSON(platelocations, {
   style: {
-    color: 'red',
+    color: 'orange',
     weight: 2
   }
 }).addTo(map);
