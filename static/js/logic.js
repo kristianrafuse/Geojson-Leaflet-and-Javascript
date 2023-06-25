@@ -505,6 +505,11 @@ var esriWorldImageryLayer = L.tileLayer('https://server.arcgisonline.com/ArcGIS/
   attribution: 'Tiles &copy; Esri &mdash; Source: Esri, i-cubed, USDA, USGS, AEX, GeoEye, Getmapping, Aerogrid, IGN, IGP, UPR-EGP, and the GIS User Community'
 });
 
+var OpenTopoMap = L.tileLayer('https://{s}.tile.opentopomap.org/{z}/{x}/{y}.png', {
+	maxZoom: 17,
+	attribution: 'Map data: &copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors, <a href="http://viewfinderpanoramas.org">SRTM</a> | Map style: &copy; <a href="https://opentopomap.org">OpenTopoMap</a> (<a href="https://creativecommons.org/licenses/by-sa/3.0/">CC-BY-SA</a>)'
+});
+
 // Add the OpenStreetMap layer to the map as the default layer
 openStreetMapLayer.addTo(map);
 
@@ -521,13 +526,14 @@ var plateBoundaryLayer = L.geoJSON(platelocations, {
 // Create a base layer control with two options: OpenStreetMap and Esri World Imagery
 var baseLayers = {
   "OpenStreetMap": openStreetMapLayer,
-  "Esri World Imagery": esriWorldImageryLayer
+  "Esri World Imagery": esriWorldImageryLayer,
+  "Open Topo Map": OpenTopoMap
 };
 
 // Create an overlay layer control with the markers layer group
 var overlayLayers = {
   "Earthquakes": markers,
-  "Plates": plateBoundaryLayer
+  "Tectonic Plates": plateBoundaryLayer
 };
 
 // Add the base layer control and overlay layer control to the map
