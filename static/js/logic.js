@@ -519,7 +519,7 @@ var markers = L.layerGroup();
 var plateBoundaryLayer = L.geoJSON(platelocations, {
   style: {
     color: 'orange',
-    weight: 1.5
+    weight: 2
   }
 })
 
