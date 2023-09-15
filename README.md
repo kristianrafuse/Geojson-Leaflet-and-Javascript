@@ -1,5 +1,6 @@
 Geojson, Leaflet, and Javascript
 -------
+In this example, I use data from The United States Geological Survey to visualize and plot earthquake data. I use Leaflet to create a map that plots all the earthquakes from the dataset based on their longitude and latitude. The data markers reflect the magnitude of the earthquake by their size and the depth of the earthquake by colour. Earthquakes with higher magnitudes appear larger and earthquakes with greater depth appear darker in color.
 
 Highlights:
 -------
